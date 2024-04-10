@@ -1,0 +1,167 @@
+@model Dignos.Entities.ClientInfo;
+@using Dignos.Entities;
+
+<style>
+    body
+    {
+        margin: 0;
+	background: linear-gradient(45deg, #49a09d, #5f2c82);
+	font-family: sans-serif;
+	font-weight: 100;
+    }
+   .button-20 {
+  appearance: button;
+  background-color: #4D4AE8;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, 0));
+  border: 1px solid #4D4AE8;
+  border-radius: 1rem;
+  box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0 inset,rgba(46, 54, 80, 0.075) 0 1px 1px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+  padding: .5rem 1rem;
+  text-align: center;
+  text-transform: none;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button-20:focus:not(:focus-visible),
+.button-20:focus {
+  outline: 0;
+}
+
+.button-20:hover {
+  background-color: #3733E5;
+  border-color: #3733E5;
+}
+
+.button-20:focus {
+  background-color: #413FC5;
+  border-color: #3E3BBA;
+  box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0 inset, rgba(46, 54, 80, 0.075) 0 1px 1px, rgba(104, 101, 235, 0.5) 0 0 0 .2rem;
+}
+
+.button-20:active {
+  background-color: #3E3BBA;
+  background-image: none;
+  border-color: #3A38AE;
+  box-shadow: rgba(46, 54, 80, 0.125) 0 3px 5px inset;
+}
+
+.button-20:active:focus {
+  box-shadow: rgba(46, 54, 80, 0.125) 0 3px 5px inset, rgba(104, 101, 235, 0.5) 0 0 0 .2rem;
+}
+
+.button-20:disabled {
+  background-image: none;
+  box-shadow: none;
+  opacity: .65;
+  pointer-events: none;
+}
+    
+</style>
+<link rel="stylesheet" href="/css/client.css">
+
+<div class="d-flex justify-content-center">
+
+<div class="card" style="width: 40rem;">
+
+    <div class="card-header pb-0">
+        <h2>Add Client</h2>
+    </div>
+
+    <div class="card-body" style="">
+
+    <form action="create" method="post" style="">
+        <div class="row g-2">
+
+        <div class="col-4 ">
+            <label class="form-label">First Name</label>
+            <input class="form-control" type="text" name="FirstName" required>
+        </div>
+
+        <div class="col-4 ">
+            <label class="form-label">Middle Name</label>
+            <input class="form-control" type="text" name="MiddleName" required>
+        </div>
+
+        <div class="col-4">
+            <label class="form-label">Last Name</label>
+            <input class="form-control" type="text" name="LastName" required>
+        </div>
+
+        <div class="col-6 ">
+            <label class="form-label">Address</label>
+            <input class="form-control" type="text" name="Address" required>
+        </div>
+
+        <div class="col-6 ">
+            <label class="form-label">ZipCode</label>
+            <input class="form-control" type="text" name="ZipCode" required>
+        </div>
+
+        <div class="col-4 ">
+            <label class="form-label">Birthday</label>
+            <input class="form-control" type="Date" name="Birthday" required>
+        </div>
+
+        <div class="col-4">
+            <label class="form-label">Age</label >
+            <input class="form-control" type="text" name="Age" required>
+        </div>
+
+        <div class="col-4 ">
+            <label class="form-label" for="UserType">User type</label>
+            <select name="Usertype" id="UserType" class="form-select" required>
+                @foreach (var UserType in ViewData["UserType"] as List<UserType>)
+                {
+                    <option value="@UserType.Id">@UserType.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-6">
+            <label class="form-label">Name Of Father</label>
+            <input class="form-control" type="text" name="NameofFather" required>
+        </div>
+
+        <div class="col-6 ">
+            <label class="form-label">Name Of Mother</label>
+            <input class="form-control" type="text" name="NameofMother" required>
+        </div>
+
+        <div class="col-6 ">
+            <label class="form-label">CivilStatus</label>
+            <input class="form-control" type="text" name="Civilstatus" required> 
+        </div>
+
+        <div class="col-6 ">
+            <label class="form-label">Religion</label>
+            <input class="form-control" type="text" name="Religion" required>
+        </div>
+        
+        <div class="col-12 ">
+            <label class="form-label">Occupation</label>
+            <input class="form-control" type="text" name="Occupation" required>
+        </div>
+        
+        <div class="btn">
+            <input type="submit" class="button-20" value="Submit">
+        </div>
+        
+    </form>
+    </div>
+</div>
+
+</div>
+

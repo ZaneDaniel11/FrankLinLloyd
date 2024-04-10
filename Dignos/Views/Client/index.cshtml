@@ -1,0 +1,202 @@
+@model List<Dignos.Entities.ClientInfo>
+
+<style>
+
+a
+{
+      text-decoration: none;
+}
+
+/* CSS */
+.button-20 {
+  appearance: button;
+  background-color: #4D4AE8;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, 0));
+  border: 1px solid #4D4AE8;
+  border-radius: 1rem;
+  box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0 inset,rgba(46, 54, 80, 0.075) 0 1px 1px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+  padding: .5rem 1rem;
+  text-align: center;
+  text-transform: none;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button-20:focus:not(:focus-visible),
+.button-20:focus {
+  outline: 0;
+}
+
+.button-20:hover {
+  background-color: #3733E5;
+  border-color: #3733E5;
+}
+
+.button-20:focus {
+  background-color: #413FC5;
+  border-color: #3E3BBA;
+  box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0 inset, rgba(46, 54, 80, 0.075) 0 1px 1px, rgba(104, 101, 235, 0.5) 0 0 0 .2rem;
+}
+
+.button-20:active {
+  background-color: #3E3BBA;
+  background-image: none;
+  border-color: #3A38AE;
+  box-shadow: rgba(46, 54, 80, 0.125) 0 3px 5px inset;
+}
+
+.button-20:active:focus {
+  box-shadow: rgba(46, 54, 80, 0.125) 0 3px 5px inset, rgba(104, 101, 235, 0.5) 0 0 0 .2rem;
+}
+
+.button-20:disabled {
+  background-image: none;
+  box-shadow: none;
+  opacity: .65;
+  pointer-events: none;
+}
+    html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	background: linear-gradient(45deg, #49a09d, #5f2c82);
+	font-family: sans-serif;
+	font-weight: 100;
+}
+
+.container {
+    display: block;
+	position: absolute;
+	top: 5%;
+	left: 5%;
+	transform: translate(-5%, -5%);
+}
+
+table {
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+th,
+td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: #fff;
+}
+
+th {
+	text-align: left;
+}
+
+thead {
+	th {
+		background-color: #55608f;
+	}
+}
+
+tbody {
+	tr {
+		&:hover {
+			background-color: rgba(255,255,255,0.3);
+		}
+	}
+	td {
+		position: relative;
+		&:hover {
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: -9999px;
+				bottom: -9999px;
+				background-color: rgba(255,255,255,0.2);
+				z-index: -1;
+			}
+		}
+	}
+
+    
+}
+.tdclass{
+         display: flex;
+    }
+
+#clientButton
+{
+    margin-bottom: 20px;
+}
+</style>
+
+<div class="container">
+
+    <h2 style="margin-top: 80px;">Client List</h2>
+
+   <a class="button-20"  id ="clientButton" href="Client/Create">Add Client</a>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>UserType</th>
+				<th>Name</th>
+				<th>Address</th>
+                <th>ZipCode</th>
+                <th>Birthday</th>
+                <th>Age</th>
+                <th>Father</th>
+                <th>Mother</th>
+                <th>Religion</th>
+                <th>CivilStatus</th>
+                <th>Occupation</th>
+                <th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			 @foreach (var ClientInfo in Model)
+        {
+          <tr class="text-center">
+            <td>@ClientInfo.Id</td>
+              @foreach (var type in (IEnumerable<Dignos.Entities.UserType>)ViewData["types"]){
+                if(@ClientInfo.UserType == @type.Id){
+                  <td>@type.Name</td>
+                }
+                }
+                <td>@ClientInfo.FirstName @ClientInfo.LastName</td>
+                <td>@ClientInfo.Address</td>
+                <td>@ClientInfo.Zipcode</td>
+                <td>@ClientInfo.Birthday</td>
+                <td>@ClientInfo.Age</td>
+                <td>@ClientInfo.NameOfFather</td>
+                <td>@ClientInfo.NameOfMother</td>
+                <td>@ClientInfo.Religion</td>
+                <td>@ClientInfo.CivilStatus</td>
+                <td>@ClientInfo.Occupation</td>
+                <td class="tdclass">
+               
+              <a class="button-20" href="/Client/Update/@ClientInfo.Id">Update</a> 
+              <a class="button-20" href="/Client/Delete/@ClientInfo.Id">Delete</a>
+              
+            </td>
+          </tr>
+        }
+			
+		</tbody>
+	</table>
+</div>
